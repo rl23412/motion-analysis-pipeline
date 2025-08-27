@@ -382,4 +382,4 @@ See [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md) for detailed attribution and scient
 
 ---
 
-For questions, issues, or feature requests, please open an issue on GitHub or contact [maintainer email].
+For questions, issues, or feature requests, please open an issue on GitHub.
