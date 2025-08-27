@@ -365,9 +365,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- MotionMapper toolbox developers
-- SocialMapper utilities
-- DANNCE pose estimation framework
+This project builds upon excellent prior work:
+- **[SocialMapper](https://github.com/uklibaite/SocialMapper)**: Combat-based motion mapping framework
+- **MotionMapper**: Original behavioral embedding methodology  
+- **DANNCE**: 3D pose estimation framework
+
+See [ACKNOWLEDGMENTS.md](ACKNOWLEDGMENTS.md) for detailed attribution and scientific references.
 
 ## Version History
 
