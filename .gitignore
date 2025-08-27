@@ -1,0 +1,116 @@
+# MATLAB specific
+*.m~
+*.asv
+*.autosave
+*.mex*
+*.p
+*.slxc
+slprj/
+
+# Data files
+data/raw/*.mat
+data/processed/*.mat
+*.h5
+*.hdf5
+
+# Large result files
+outputs/results/*.mat
+outputs/figures/*.png
+outputs/figures/*.jpg
+outputs/figures/*.eps
+outputs/csv/*.csv
+outputs/validation/*.txt
+
+# Cache and temporary files
+cache/
+temp/
+tmp/
+.temp/
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Log files
+*.log
+logs/
+
+# Backup files
+*~
+*.bak
+*.orig
+
+# Compiled dependencies
+dependencies/compiled/
+dependencies/*/build/
+dependencies/*/*.mex*
+
+# Virtual environments
+venv/
+env/
+.env
+
+# Configuration backups
+config/*.backup
+config/*~
+
+# Test outputs
+tests/outputs/
+tests/temp/
+
+# Documentation builds
+docs/_build/
+docs/html/
+docs/latex/
+
+# Profiling results
+profile_results/
+
+# MATLAB Coder outputs
+codegen/
+
+# Simulink specific (if used)
+*.slx.r????
+*.slx.original
+
+# Package archives
+*.zip
+*.tar.gz
+*.rar
+
+# Jupyter notebook checkpoints (if used)
+.ipynb_checkpoints/
+
+# Python cache (if Python scripts are used)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# R specific (if R scripts are used)
+.RData
+.Rhistory
+.Rproj.user/
+
+# Keep important example files but ignore data
+!examples/data/*.mat
+
+# Keep empty directories with placeholder files
+!outputs/results/.gitkeep
+!outputs/figures/.gitkeep
+!outputs/csv/.gitkeep
+!outputs/validation/.gitkeep
+!data/raw/.gitkeep
+!data/processed/.gitkeep
