@@ -346,19 +346,6 @@ See `docs/troubleshooting.md` for detailed solutions.
 - Update documentation
 - Ensure backwards compatibility
 
-## Citation
-
-If you use this pipeline in your research, please cite:
-
-```bibtex
-@article{spontaneous_pain_pipeline_2024,
-  title={Spontaneous Pain Analysis Pipeline: Behavioral Embedding for Pain Assessment},
-  author={[Your Name]},
-  journal={[Journal]},
-  year={2024}
-}
-```
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
