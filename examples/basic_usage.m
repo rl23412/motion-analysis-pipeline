@@ -307,35 +307,35 @@ function generate_sample_data(data_dir)
     for i = 1:length(mouseOrderShort)
         filename = fullfile(data_dir, mouseOrderShort{i});
         
-        # Generate random pose data (500 frames, 3 coords, 23 joints)
+        % Generate random pose data (500 frames, 3 coords, 23 joints)
         n_frames = 500;
         n_coords = 3;
         n_joints = 23;
         
-        # Create realistic-looking pose data
+        % Create realistic-looking pose data
         pred = zeros(n_frames, n_coords, n_joints);
         
         for joint = 1:n_joints
-            # Generate smooth trajectories with some noise
+            % Generate smooth trajectories with some noise
             base_x = 100 + 50 * sin(2*pi*(1:n_frames)/100) + 10*randn(1,n_frames);
             base_y = 150 + 30 * cos(2*pi*(1:n_frames)/80) + 8*randn(1,n_frames);
             base_z = 50 + 20 * sin(2*pi*(1:n_frames)/60) + 5*randn(1,n_frames);
             
-            pred(:, 1, joint) = base_x + joint*5;  # Spread joints spatially
+            pred(:, 1, joint) = base_x + joint*5;  % Spread joints spatially
             pred(:, 2, joint) = base_y + joint*3;
             pred(:, 3, joint) = base_z + joint*2;
         end
         
-        # Save sample data
+        % Save sample data
         save(filename, 'pred');
     end
     
-    # Create training data files
+    % Create training data files
     training_files = {'SNI_2.mat', 'week4-TBI_3.mat'};
     for i = 1:length(training_files)
         filename = fullfile(data_dir, training_files{i});
         
-        # Generate larger training dataset
+        % Generate larger training dataset
         n_frames = 1000;
         pred = zeros(n_frames, n_coords, n_joints);
         
@@ -360,12 +360,12 @@ function config = create_minimal_config()
     config.version = '1.4.0';
     config.description = 'Minimal demo configuration';
     
-    # Data configuration
+    % Data configuration
     config.data = struct();
     config.data.format = 'rat23';
     config.data.expected_dimensions = [NaN, 3, 23];
     
-    # Parameters
+    % Parameters
     config.parameters = struct();
     config.parameters.pca = struct();
     config.parameters.pca.num_components = 15;
@@ -391,12 +391,12 @@ function config = create_minimal_config()
     config.output.generate_figures = true;
     config.output.export_csv = true;
     
-    # Files
+    % Files
     config.files = struct();
     config.files.mouse_file_order = 'mouseFileOrder.mat';
     config.files.final_results = 'mouseEmbeddingResults_weekdata.mat';
     
-    # Training
+    % Training
     config.training = struct();
     config.training.files = {'SNI_2.mat', 'week4-TBI_3.mat'};
 end

@@ -293,7 +293,7 @@ for i = 1:length(mexFiles)
         fprintf('  ✓ %s.%s - %s\n', mexName, mexext, mexDescription);
         fprintf('    → %s\n', relativePath(mexPath, currentDir));
         
-        # Test MEX file functionality
+        % Test MEX file functionality
         try
             if strcmp(mexName, 'findListDistances')
                 % Test with small dummy data
@@ -332,7 +332,7 @@ matlab_version = version;
 matlab_release = version('-release');
 fprintf('  MATLAB Version: %s (%s)\n', matlab_version, matlab_release);
 
-# Memory information
+% Memory information
 if ispc
     [~, memInfo] = memory;
     if isfield(memInfo, 'MemAvailableAllArrays')
@@ -404,7 +404,7 @@ for i = 1:size(dataFiles, 1)
         fprintf('  ✓ %s\n', filename);
         fprintf('    %s\n', description);
         
-        # Validate structure for key files
+        % Validate structure for key files
         if strcmp(filename, 'data/raw/mouseFileOrder.mat')
             try
                 data = load(filePath);
@@ -568,7 +568,7 @@ function relPath = relativePath(fullPath, basePath)
     try
         relPath = relativepath(fullPath, basePath);
     catch
-        # Fallback if relativepath is not available
+        % Fallback if relativepath is not available
         if startsWith(fullPath, basePath)
             relPath = fullPath((length(basePath)+2):end); % +2 for filesep
         else

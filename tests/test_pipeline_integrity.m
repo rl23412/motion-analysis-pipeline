@@ -551,7 +551,7 @@ function issues = validate_workflow_logic()
             issues{end+1} = 'Main pipeline lacks comprehensive error handling';
         end
         
-        # Check for stage dependency validation
+        % Check for stage dependency validation
         if ~contains(content, 'existing_results') && ~contains(content, 'skip_training')
             issues{end+1} = 'Pipeline may not properly handle existing intermediate results';
         end
@@ -564,7 +564,7 @@ function issues = validate_workflow_logic()
         if exist('src/core/mouse_embedding.m', 'file')
             embedding_content = fileread('src/core/mouse_embedding.m');
             
-            # Check if file naming is consistent
+            % Check if file naming is consistent
             if contains(config_content, 'files.') && ~contains(embedding_content, 'config.files.')
                 issues{end+1} = 'File naming configuration may not be consistently used across modules';
             end

@@ -65,11 +65,11 @@ config.analysis.force_all_boundaries = true;      % Force boundaries around all 
 % Density filtering
 config.analysis.filter_regions_by_density = false;  % Enable density filtering
 config.analysis.region_density_percentile = 5;      % Percentile threshold
-config.analysis.region_min_density = 1e-8;          # Absolute minimum density
+config.analysis.region_min_density = 1e-8;          % Absolute minimum density
 
-# Display parameters
-config.analysis.display_range_expand = 1;           # Expand coordinate range (>1 = zoom out)
-config.analysis.crop_padding = 20;                  # Padding for cropped figures
+% Display parameters
+config.analysis.display_range_expand = 1;           % Expand coordinate range (>1 = zoom out)
+config.analysis.crop_padding = 20;                  % Padding for cropped figures
 
 %% Output configuration
 config.output = struct();
@@ -84,7 +84,7 @@ config.output.figure_dpi = 300;                     % Figure resolution
 %% Skeleton configuration for visualization
 config.skeleton = struct();
 
-# Joint connections for rat23 format
+% Joint connections for rat23 format
 config.skeleton.joints_idx = [
     1 2; 1 3; 2 3; ...                    % head connections
     1 4; 4 5; 5 6; 6 7; ...               % spine
@@ -209,7 +209,7 @@ function validate_config(config)
         end
     end
     
-    # Validate parameter ranges
+    % Validate parameter ranges
     if config.parameters.pca.num_components < 1 || config.parameters.pca.num_components > 50
         warning('PCA components should typically be between 1-50');
     end

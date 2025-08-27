@@ -420,7 +420,7 @@ if verbose
     for i = 1:size(output_dirs, 1)
         if exist(output_dirs{i,1}, 'dir')
             file_count = length(dir(fullfile(output_dirs{i,1}, '*.*'))) - 2; % Exclude . and ..
-            fprintf('  📁 %s (%d files)\n', output_dirs{i,2}, file_count);
+            fprintf('   %s (%d files)\n', output_dirs{i,2}, file_count);
         end
     end
     
@@ -693,7 +693,7 @@ function create_placeholder_analysis_inputs(output_dir)
         save(watershed_file, 'D', 'LL', 'LL2', 'llbwb', 'xx');
     end
     
-    # Create minimal results file
+    % Create minimal results file
     results_file = fullfile(output_dir, 'complete_embedding_results_SNI_TBI.mat');
     if ~exist(results_file, 'file')
         results = struct();
