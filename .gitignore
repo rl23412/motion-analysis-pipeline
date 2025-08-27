@@ -1,0 +1,66 @@
+# MATLAB files
+*.asv
+*.autosave
+*.m~
+
+# Data files (exclude from repository)
+*.mat
+*.csv
+*.h5
+*.hdf5
+*.npy
+*.npz
+
+# Large output files
+*.avi
+*.mp4
+*.mov
+*.png
+*.jpg
+*.jpeg
+*.tiff
+*.tif
+*.svg
+
+# Results and temporary directories
+outputs/
+results/
+temp/
+tmp/
+cache/
+processed/
+figures/
+plots/
+
+# OS specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Compiled MEX files (will include specific ones needed)
+*.mexa64
+*.mexmaci64
+*.mexw64
+
+# Python cache (for any Python utilities)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.pytest_cache/
+
+# Log files
+*.log
+*.txt.bak
+
+# Backup files
+*~
+*.bak
+*.orig
