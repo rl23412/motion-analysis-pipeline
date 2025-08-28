@@ -3,15 +3,26 @@
 *.autosave
 *.m~
 
-# Data files (exclude from repository)
+# Large data files (exclude from repository but keep locally)
 *.mat
-*.csv
 *.h5
 *.hdf5
 *.npy
 *.npz
 
-# Large output files
+# Results and outputs (exclude from Git but keep for testing)
+outputs/
+results/
+precomputed_results/
+temp/
+tmp/
+cache/
+processed/
+
+# CSV files (too large for Git)
+*.csv
+
+# Image and video files
 *.avi
 *.mp4
 *.mov
@@ -22,13 +33,7 @@
 *.tif
 *.svg
 
-# Results and temporary directories
-outputs/
-results/
-temp/
-tmp/
-cache/
-processed/
+# Figures and plots directories
 figures/
 plots/
 
@@ -42,11 +47,6 @@ desktop.ini
 .idea/
 *.swp
 *.swo
-
-# Compiled MEX files (will include specific ones needed)
-*.mexa64
-*.mexmaci64
-*.mexw64
 
 # Python cache (for any Python utilities)
 __pycache__/
@@ -64,3 +64,12 @@ __pycache__/
 *~
 *.bak
 *.orig
+
+# Compiled MEX files - keep the ones we need
+# *.mexa64
+# *.mexmaci64  
+# *.mexw64
+
+# But exclude development MEX files
+*.mexw32
+*.mexglx
