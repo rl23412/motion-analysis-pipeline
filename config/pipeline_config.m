@@ -1,21 +1,21 @@
 function config = pipeline_config()
-% PIPELINE_CONFIG - Main configuration for the motion analysis pipeline
+% PIPELINE_CONFIG - Configuration for ComBat SNI_TBI embedding pipeline
 %
-% This function returns the complete configuration structure for the
-% custom embedding pipeline with ComBat batch correction
+% This configuration matches EXACTLY the custom_embedding_pipeline_SNI_TBI.m
+% parameters for mouse14 format (14 joints) with ComBat batch correction
 %
 % Returns:
 %   config - Structure containing all pipeline parameters
 
 config = struct();
 
-%% Data Configuration
+%% Data Configuration (from ComBat pipeline)
 config.data_dir = '/work/rl349/dannce/mouse14/allData';  % Default data directory
 
-%% File Configuration
+%% File Configuration (exact from ComBat pipeline)
 config.files = struct();
 
-% Define all available files
+% Define all available files (from custom_embedding_pipeline_SNI_TBI.m)
 config.files.all_files = {
     'DRG_1.mat', 'DRG_2.mat', 'DRG_3.mat', 'DRG_4.mat', 'DRG_5.mat', ...
     'IT_1.mat', 'IT_2.mat','IT_3.mat', ...
@@ -27,16 +27,16 @@ config.files.all_files = {
     'week4-TBI_1.mat', 'week4-TBI_2.mat', 'week4-TBI_3.mat', 'week4-TBI_4.mat'
 };
 
-% Use all files for training (robust embedding)
+% Use all files for training (robust embedding) - from ComBat pipeline
 config.files.training_files = config.files.all_files;
 
-% Re-embed all files to produce outputs for every dataset
+% Re-embed all files to produce outputs for every dataset - from ComBat pipeline
 config.files.reembedding_files = config.files.all_files;
 
-%% Skeleton Configuration (mouse14 format - 14 joints)
+%% Skeleton Configuration - MOUSE14 FORMAT (14 joints)
 config.skeleton = struct();
 
-% Joint connections
+% Joint connections for mouse14 format (from ComBat pipeline)
 config.skeleton.joints_idx = [
     1 2; 1 3; 2 3; ...    % head connections: Snout-EarL, Snout-EarR, EarL-EarR
     1 4; 4 5; 5 6; ...    % spine: Snout-SpineF, SpineF-SpineM, SpineM-Tail(base)
@@ -46,7 +46,7 @@ config.skeleton.joints_idx = [
     5 13; 13 14           % right hind limb: SpineM-HindShdR, HindShdR-HindpawR
 ];
 
-% Define colors for visualization
+% Define colors for visualization (from ComBat pipeline)
 chead = [1 .6 .2];        % orange
 cspine = [.2 .635 .172];  % green
 cLF = [0 0 1];            % blue (left front)
@@ -63,7 +63,7 @@ config.skeleton.color = [
     cRH; cRH                      % right hind limb (2)
 ];
 
-%% Algorithm Parameters
+%% Algorithm Parameters (exact from ComBat pipeline)
 config.parameters = struct();
 
 % Sampling and frequency parameters
@@ -72,13 +72,13 @@ config.parameters.minF = 0.5;           % Hz
 config.parameters.maxF = 20;            % Hz
 config.parameters.numModes = 20;        % Number of wavelet modes
 
-% PCA parameters
+% PCA parameters (exact from ComBat pipeline)
 config.parameters.pca = struct();
-config.parameters.pca.numComponents = 15;    % Number of PCA components
-config.parameters.pca.pcaModes = 20;         % PCA modes for processing
-config.parameters.pca.batchSize = 30000;     % Batch size for PCA computation
+config.parameters.pca.numComponents = 15;    % nPCA = 15
+config.parameters.pca.pcaModes = 20;         % pcaModes = 20
+config.parameters.pca.batchSize = 30000;     % batchSize = 30000
 
-% t-SNE parameters
+% t-SNE parameters (from ComBat pipeline)
 config.parameters.tsne = struct();
 config.parameters.tsne.numPerDataSet = 320;  % Subsampling for t-SNE
 
@@ -86,20 +86,32 @@ config.parameters.tsne.numPerDataSet = 320;  % Subsampling for t-SNE
 config.parameters.reembedding = struct();
 config.parameters.reembedding.batchSize = 10000;  % Batch size for re-embedding
 
-%% ComBat Batch Correction Parameters
+%% ComBat Batch Correction Parameters (from ComBat pipeline)
 config.combat = struct();
 config.combat.enabled = true;                    % Enable ComBat correction
-config.combat.parametric = true;                 % Use parametric ComBat
+config.combat.parametric = true;                 % Use parametric ComBat (parametric=1)
 config.combat.use_covariates = true;             % Include covariates
 config.combat.handle_confounding = true;         % Handle confounded covariates
 
-%% Watershed Parameters
+%% Watershed Parameters (from ComBat pipeline)
 config.watershed = struct();
-config.watershed.sigma_density = 0.8;           % Density estimation sigma
+config.watershed.sigma_density = 0.8;           % sigma_density = 0.8
 config.watershed.grid_size = 501;               % Grid size for density map
-config.watershed.connectivity = 18;             % Watershed connectivity
-config.watershed.padding = 0.05;                % Padding for symmetric bounds
-config.watershed.vSmooth = 0.5;                 % Smoothing for region finding
+config.watershed.connectivity = 18;             % Watershed connectivity = 18
+config.watershed.padding = 0.05;                % 5% padding (maxAbs * 1.05)
+
+%% Data Format Parameters - MOUSE14 FORMAT
+config.dataFormat = struct();
+config.dataFormat.jointFormat = 'mouse14';             % mouse14 format (14 joints)
+config.dataFormat.expectedDimensions = [NaN, 3, 14];   % [frames, coords, joints]
+config.dataFormat.coordinateOrder = {'x', 'y', 'z'};
+
+% Joint mapping for mouse14 format (14 joints)
+config.dataFormat.jointNames = {
+    'Snout', 'EarL', 'EarR', 'SpineF', 'SpineM', 'Tail', ...
+    'ForShdL', 'ForepawL', 'ForeShdR', 'ForepawR', ...
+    'HindShdL', 'HindpawL', 'HindShdR', 'HindpawR'
+};
 
 %% Visualization Colors for Groups
 config.colors = struct();
@@ -118,14 +130,11 @@ config.options = struct();
 config.options.verbose = true;                  % Verbose output
 config.options.save_intermediates = true;       % Save intermediate results
 config.options.create_visualizations = true;    % Generate plots
-config.options.parallel_processing = false;     % Use parallel processing (if available)
 
 %% Output Configuration
 config.output = struct();
 config.output.base_dir = 'outputs';             % Base output directory
 config.output.save_format = 'v7.3';             % MAT file format for large files
-config.output.figure_format = 'png';            % Figure format
-config.output.figure_dpi = 300;                 % Figure DPI
 
 %% Dependencies Configuration
 config.dependencies = struct();
